@@ -56,6 +56,8 @@ class NewsAdapter :RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
         }
 
 
+
+
     }
 
     override fun getItemCount(): Int {

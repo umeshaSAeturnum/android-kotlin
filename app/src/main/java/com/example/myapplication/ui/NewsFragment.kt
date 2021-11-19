@@ -24,6 +24,8 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as MainActivity).viewModel
+
+        Log.e("Load fragment","fragment is loading")
         setupRecyclerView()
 
         viewModel.breakingNews.observe(viewLifecycleOwner, Observer { response ->
