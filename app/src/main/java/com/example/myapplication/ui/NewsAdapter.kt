@@ -3,8 +3,6 @@ package com.example.myapplication.ui
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -54,9 +52,6 @@ class NewsAdapter :RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
             description.text = article.description
             news_title.text = article.title
         }
-
-
-
 
     }
 
