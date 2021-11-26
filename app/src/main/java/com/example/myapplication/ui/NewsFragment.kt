@@ -9,6 +9,7 @@ import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.Constants.Constants.Companion.SEARCH_NEWS_TIME_DELAY
 import com.example.myapplication.R
@@ -30,18 +31,21 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
     val TAG_SEARCH_NEWS = "NEWS_FRAGMENT_SEARCH_NEWS"
     val TAG_LOADING = "NEWS_FRAGMENT"
 
-
     @SuppressLint("LongLogTag")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as MainActivity).viewModel
         setHasOptionsMenu(true)
-        Log.i("News fragment","fragment is loading")
+        Log.i(TAG_LOADING,"fragment is loading")
 
         setupRecyclerView_breaking_news()
         setupRecyclerView_search_news()
 
+        newsAdapter.setOnItemClickListener {
 
+            (activity as MainActivity).getData(it)
+
+        }
 
         viewModel.breakingNews.observe(viewLifecycleOwner, Observer { response ->
             when(response){
@@ -124,6 +128,6 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
                 viewModel.searchNews(query)
                 searchView.clearFocus()
             }
-            }
         }
     }
+}

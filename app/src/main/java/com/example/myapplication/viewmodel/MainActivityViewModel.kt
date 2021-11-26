@@ -13,6 +13,10 @@ class MainActivityViewModel(
     val newsRepository: NewsRepository
 ): ViewModel() {
 
+    //used to view the changes of the view model and  update the changes
+//    whenever data is updated or changed, the changes are only applied to the specific app components that are in an active state.
+//    Contrarily, if the app components are inactive, the changes will not be applied.
+    // LiveDAta is immutable and MtableLiveDAta is mutable can can set the values
     val breakingNews:MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
     var breakingNewsPage = 1
 
@@ -23,6 +27,7 @@ class MainActivityViewModel(
         getBreakingNews("us")
     }
     fun getBreakingNews(countryCode: String) = viewModelScope.launch {
+        //setValue() is used in the main thread and postValue() is used in backgroung threads
         breakingNews.postValue(Resource.Loading())
         val response = newsRepository.getnews(countryCode, breakingNewsPage)
         breakingNews.postValue(handleBreakingNewsResponse(response))

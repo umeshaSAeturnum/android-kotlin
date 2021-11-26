@@ -34,7 +34,6 @@
             android:layout_marginRight="@dimen/author_text_layout_margin_right"
             android:layout_marginTop="@dimen/author_margin_top"/>
 
-
         </LinearLayout>
         <TextView
             android:id="@+id/news_title"
@@ -43,11 +42,12 @@
             android:fontFamily="sans-serif-black"
             android:textStyle="bold"
             android:textColor="@color/black"
+            android:justificationMode="inter_word"
             android:textSize="@dimen/title_txt_size"
             android:layout_marginLeft="@dimen/txt_margin"
             android:layout_marginRight="@dimen/txt_margin"
-            android:paddingBottom="@dimen/title_padding"
-            android:paddingTop="@dimen/title_padding"/>
+            android:layout_marginTop="@dimen/title_margin"
+            android:layout_marginBottom="@dimen/title_padding"/>
 
         <TextView
             android:id="@+id/description"
@@ -55,10 +55,11 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
             android:textStyle="normal"
-            android:textSize="@dimen/author_des_font"
+            android:justificationMode="inter_word"
+            android:textSize="@dimen/description_font_size"
             android:layout_marginRight="@dimen/txt_margin"
             android:layout_marginLeft="@dimen/txt_margin"
-            android:paddingBottom="@dimen/title_padding"
+            android:layout_marginBottom="@dimen/title_padding"
             android:layout_gravity="center_vertical"/>
     </LinearLayout>
 

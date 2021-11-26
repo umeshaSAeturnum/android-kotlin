@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="imageview_height">190dp</dimen>
+    <dimen name="imageview_detail_height">250dp</dimen>
     <dimen name="cardview_elevation">4dp</dimen>
     <dimen name="cardview_corner_radius">15dp</dimen>
     <dimen name="cardview_margin">11dp</dimen>
@@ -8,11 +9,20 @@
     <dimen name="author_text_layout_margin_right">160dp</dimen>
     <dimen name="frame_margin_bottom">10dp</dimen>
     <dimen name="title_txt_size">18dp</dimen>
+    <dimen name="title_txt_size_detail">20dp</dimen>
+    <dimen name="description_txt_size">18dp</dimen>
     <dimen name="txt_margin">18dp</dimen>
     <dimen name="title_padding">8dp</dimen>
-    <dimen name="author_des_font">15dp</dimen>
+    <dimen name="title_margin_bottom_detail">10dp</dimen>
+    <dimen name="title_margin">3dp</dimen>
+    <dimen name="author_des_font">12dp</dimen>
     <dimen name="author_margin_left">10dp</dimen>
-    <dimen name="author_margin_top">8dp</dimen>
+    <dimen name="author_margin_top">3dp</dimen>
+    <dimen name="author_det_font">20dp</dimen>
+    <dimen name="description_detail_margin_bottom">10dp</dimen>
+    <dimen name="content_detail_margin_top">20dp</dimen>
+    <dimen name="description_font_size">13dp</dimen>
+    <dimen name="title_margin_top_detail">2dp</dimen>
 
 
 </resources>
