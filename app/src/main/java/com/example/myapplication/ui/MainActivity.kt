@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.ViewModelProvider
-import com.example.myapplication.DetailActivity
 import com.example.myapplication.R
 import com.example.myapplication.models.Article
 import com.example.myapplication.repository.NewsRepository
@@ -21,6 +20,7 @@ class MainActivity : AppCompatActivity(){
         setContentView(R.layout.activity_news)
 
         val newsRepository = NewsRepository()
+
         //view model factory is used when there are parameters for viewModel constructor
         //if not ViewModelProviders.of() method internally creates default ViewModelProvider.Factory implementation for creating our ViewModel with no argument.
         val viewModelProviderFactory = NewsViewModelProviderFactory(newsRepository)
