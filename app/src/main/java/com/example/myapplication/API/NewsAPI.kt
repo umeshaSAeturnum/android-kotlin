@@ -16,13 +16,14 @@ interface NewsAPI {
         @Query("apiKey")
         apiKey : String = API_KEY
     ): Response<NewsResponse>
-//    fun getData(
-//        @Query("country")
-//        countryCode : String = "us",
-//        @Query("page")
-//        pageNumber: Int = 1,
-//        @Query("apiKey")
-//        apiKey : String = API_KEY
-//    ): Call<NewsResponse>
-//
+
+    @GET("v2/everything")
+    suspend fun searchNews(
+        @Query("q")
+        searchQuery : String,
+        @Query("page")
+        pageNumber: Int = 1,
+        @Query("apiKey")
+        apiKey : String = API_KEY
+    ): Response<NewsResponse>
 }

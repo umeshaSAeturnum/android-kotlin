@@ -3,8 +3,6 @@ package com.example.myapplication.ui
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -42,7 +40,7 @@ class NewsAdapter :RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
         )
 
     }
-
+    private var onItemClickListener: ((Article) -> Unit)? = null
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val article = differ.currentList[position]
 
@@ -53,10 +51,11 @@ class NewsAdapter :RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
             author.text = article.author
             description.text = article.description
             news_title.text = article.title
+
+            setOnClickListener {
+                onItemClickListener?.let { it(article) }
+            }
         }
-
-
-
 
     }
 
@@ -64,6 +63,9 @@ class NewsAdapter :RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
         return differ.currentList.size
     }
 
+    fun setOnItemClickListener(listener: (Article) -> Unit) {
+        onItemClickListener = listener
+    }
 }
 
 
