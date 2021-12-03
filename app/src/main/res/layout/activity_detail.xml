@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.DetailActivity"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:cardElevation="@dimen/cardview_elevation"
+        android:layout_margin="@dimen/cardview_margin"
+        app:cardCornerRadius="@dimen/cardview_corner_radius">
+
+        <ImageView
+            android:id="@+id/imageview_detail"
+            android:layout_width="match_parent"
+        android:layout_height="@dimen/imageview_detail_height"
+        android:scaleType="centerCrop"
+        android:layout_gravity="center" />
+    </androidx.cardview.widget.CardView>
+    <TextView
+        android:id="@+id/author_detail"
+        android:layout_width="wrap_content"
+        android:textSize="@dimen/author_des_font"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@color/ash"
+        android:textStyle="italic"
+        android:layout_marginLeft="@dimen/txt_margin"
+        android:layout_height="@dimen/author_text_height"
+        android:singleLine="true"
+        android:layout_marginRight="@dimen/author_text_layout_margin_right"
+        android:layout_marginTop="@dimen/author_margin_top"/>
+    <TextView
+        android:id="@+id/news_title_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="@dimen/title_txt_size_detail"
+        android:justificationMode="inter_word"
+        android:layout_marginLeft="@dimen/txt_margin"
+        android:layout_marginRight="@dimen/txt_margin"
+        android:paddingBottom="@dimen/title_padding"
+        android:layout_marginTop="@dimen/title_margin"/>
+
+
+
+    <TextView
+        android:id="@+id/description_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@color/black"
+        android:textStyle="italic"
+        android:textSize="@dimen/description_txt_size"
+        android:layout_marginRight="@dimen/txt_margin"
+        android:layout_marginLeft="@dimen/txt_margin"
+        android:layout_marginBottom="@dimen/title_margin_bottom_detail"
+        android:justificationMode="inter_word"
+        android:layout_gravity="center_vertical"/>
+
+    <TextView
+        android:id="@+id/content_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:textStyle="normal"
+        android:textFontWeight="@android:integer/config_longAnimTime"
+        android:textSize="@dimen/description_font_size"
+        android:layout_marginRight="@dimen/txt_margin"
+        android:layout_marginLeft="@dimen/txt_margin"
+        android:paddingBottom="@dimen/title_padding"
+        android:justificationMode="inter_word"
+        android:layout_marginTop="@dimen/content_detail_margin_top"
+        android:layout_gravity="center_vertical"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="6dp"
+        app:srcCompat="@drawable/ic_favorite"
+        tools:ignore="MissingConstraints" />
+
+</LinearLayout>
+

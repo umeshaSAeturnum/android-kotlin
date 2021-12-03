@@ -26,35 +26,24 @@ import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class SavedNewsFragment : Fragment() {
+class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
 
     lateinit var viewModel: MainActivityViewModel
     lateinit var newsAdapter: NewsAdapter
-    var job: Job? = null
+    val SAVED_NEWS = "Saved News Fragment"
 
-    val TAG_BREAK_NEWS = "NEWS_FRAGMENT_BREAKING_NEWS"
-    val TAG_SEARCH_NEWS = "NEWS_FRAGMENT_SEARCH_NEWS"
-    val TAG_LOADING = "NEWS_FRAGMENT"
 
     @SuppressLint("LongLogTag")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as MainActivity).viewModel
         setHasOptionsMenu(true)
-        Log.i(TAG_LOADING,"fragment is loading")
-
-        setupRecyclerView_breaking_news()
-        setupRecyclerView_search_news()
-
-        newsAdapter.setOnItemClickListener {
-
-            (activity as MainActivity).getData(it)
-
-        }
+        setupRecyclerView_savedNews()
+        Log.e(SAVED_NEWS, "fragment is loading")
 
         val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
-                ItemTouchHelper.UP or ItemTouchHelper.DOWN,
-                ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+            ItemTouchHelper.UP or ItemTouchHelper.DOWN,
+            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
         ) {
             override fun onMove(
                 recyclerView: RecyclerView,
@@ -67,10 +56,10 @@ class SavedNewsFragment : Fragment() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                val position = viewHolder.adapterPosition
                 val article = newsAdapter.differ.currentList[position]
-//                viewModel.deleteArticle(article)
+                viewModel.deleteArticle(article)
                 Snackbar.make(view, "SUccessfully deleted article", Snackbar.LENGTH_LONG).apply {
-                    setAction("undo"){
-//                        viewModel.saveArticle(article)
+                    setAction("undo") {
+                        viewModel.saveArticle(article)
                     }
                     show()
                 }
@@ -82,59 +71,20 @@ class SavedNewsFragment : Fragment() {
             attachToRecyclerView(recycleViewSaved)
         }
 
-//        viewModel.getSavednews().observe(viewLifecycleOwner, Observer { articles ->
-//            newsAdapter.differ.submitList(articles)
-//        })
-
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-
-        inflater.inflate(R.menu.app_bar_menu, menu)
-
-        val manager = requireActivity().getSystemService(Context.SEARCH_SERVICE) as SearchManager
-        val searchItem = menu.findItem(R.id.search)
-        val searchView = searchItem.actionView as androidx.appcompat.widget.SearchView
-
-        searchView.setSearchableInfo(manager.getSearchableInfo(requireActivity().componentName))
-
-        searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                displaySearchResult(query,searchView)
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                displaySearchResult(newText,searchView)
-                return true
-            }
+        viewModel.getSavednews().observe(viewLifecycleOwner, Observer { articles ->
+            newsAdapter.differ.submitList(articles)
         })
+
     }
 
-    private fun setupRecyclerView_breaking_news(){
-        newsAdapter  = NewsAdapter()
-        recycleViewSaved.apply{
+
+    private fun setupRecyclerView_savedNews() {
+        newsAdapter = NewsAdapter()
+        recycleViewSaved.apply {
             adapter = newsAdapter
             layoutManager = LinearLayoutManager(activity)
         }
     }
 
-    private fun setupRecyclerView_search_news(){
-        newsAdapter  = NewsAdapter()
-        recycleView.apply{
-            adapter = newsAdapter
-            layoutManager = LinearLayoutManager(activity)
-        }
-    }
 
-    private fun displaySearchResult(query : String?, searchView : SearchView){
-        job?.cancel()
-        job = MainScope().launch {
-            delay(Constants.SEARCH_NEWS_TIME_DELAY)
-            if (query != null) {
-                viewModel.searchNews(query)
-                searchView.clearFocus()
-            }
-        }
-    }
 }

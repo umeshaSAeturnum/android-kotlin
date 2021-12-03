@@ -55,8 +55,8 @@ class MainActivityViewModel(
         return Resource.Error(response.message())
     }
 
-    private fun handleSearchNewsResponse(response: Response<NewsResponse>) : Resource<NewsResponse> {
-        if(response.isSuccessful){
+    private fun handleSearchNewsResponse(response: Response<NewsResponse>): Resource<NewsResponse> {
+        if (response.isSuccessful) {
             response.body()?.let { resultResponse ->
                 return Resource.Success(resultResponse)
             }
@@ -65,17 +65,15 @@ class MainActivityViewModel(
         return Resource.Error(response.message())
     }
 
-//    fun saveArticle(article: Article) = viewModelScope.launch {
-//        newsRepository.upsert(article)
-//    }
-//
-//    fun getSavednews() = newsRepository.getSavedNews()
-//
-//    fun deleteArticle(article: Article) = viewModelScope.launch {
-//        newsRepository.deleteArticle(article)
-//    }
+    fun saveArticle(article: Article) = viewModelScope.launch {
+        newsRepository.upsert(article)
+    }
 
+    fun getSavednews() = newsRepository.getSavedNews()
 
+    fun deleteArticle(article: Article) = viewModelScope.launch {
+        newsRepository.deleteArticle(article)
+    }
 
 
 }
