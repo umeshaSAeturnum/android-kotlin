@@ -12,6 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".ui.ArticleActivity"
+            android:exported="false"
+            android:label="@string/title_activity_article"
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
+        <activity
             android:name=".ui.DetailActivity"
             android:exported="false" />
         <activity

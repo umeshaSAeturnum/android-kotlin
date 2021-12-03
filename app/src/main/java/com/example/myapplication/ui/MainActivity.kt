@@ -4,13 +4,22 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupWithNavController
 import com.example.myapplication.R
+//import com.example.myapplication.db.ArticleDatabase
 import com.example.myapplication.models.Article
 import com.example.myapplication.repository.NewsRepository
 import com.example.myapplication.viewmodel.MainActivityViewModel
 import com.example.myapplication.viewmodel.NewsViewModelProviderFactory
+import kotlinx.android.synthetic.main.activity_news.*
 
 class MainActivity : AppCompatActivity(){
+    private lateinit var navController: NavController
     lateinit var viewModel: MainActivityViewModel
     val fragment:NewsFragment = NewsFragment()
     val TAG_MAIN_ACTIVITY = "Main Activity"
@@ -18,7 +27,12 @@ class MainActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news)
+        navController = Navigation.findNavController(this,R.id.fragmentContainerView)
+        bottomNavigationView.setupWithNavController(navController)
 
+        NavigationUI.setupActionBarWithNavController(this,navController)
+
+//        val newsRepository = NewsRepository(ArticleDatabase(this))
         val newsRepository = NewsRepository()
 
         //view model factory is used when there are parameters for viewModel constructor
@@ -34,7 +48,7 @@ class MainActivity : AppCompatActivity(){
     fun loadFragment(newsFragment: NewsFragment){
 
         supportFragmentManager.beginTransaction()
-                .replace(R.id.frameLayout, newsFragment)
+                .replace(R.id.fragmentContainerView, newsFragment)
                 .commitAllowingStateLoss()
 
     }

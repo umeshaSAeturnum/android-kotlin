@@ -3,6 +3,7 @@ package com.example.myapplication.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.myapplication.models.Article
 import com.example.myapplication.util.Resource
 import com.example.myapplication.models.NewsResponse
 import com.example.myapplication.repository.NewsRepository
@@ -19,9 +20,14 @@ class MainActivityViewModel(
     // LiveDAta is immutable and MtableLiveDAta is mutable can can set the values
     val breakingNews:MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
     var breakingNewsPage = 1
+    var breakingNewsResponse: NewsResponse? = null
 
     val searchNews:MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
     var searchNewsPage = 1
+    var searchNewsResponse: NewsResponse? = null
+    var newSearchQuery:String? = null
+    var oldSearchQuery:String? = null
+
 
     init{
         getBreakingNews("us")
@@ -58,6 +64,18 @@ class MainActivityViewModel(
 
         return Resource.Error(response.message())
     }
+
+//    fun saveArticle(article: Article) = viewModelScope.launch {
+//        newsRepository.upsert(article)
+//    }
+//
+//    fun getSavednews() = newsRepository.getSavedNews()
+//
+//    fun deleteArticle(article: Article) = viewModelScope.launch {
+//        newsRepository.deleteArticle(article)
+//    }
+
+
 
 
 }

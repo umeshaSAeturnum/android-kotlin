@@ -23,6 +23,7 @@
     <dimen name="content_detail_margin_top">20dp</dimen>
     <dimen name="description_font_size">13dp</dimen>
     <dimen name="title_margin_top_detail">2dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 
 
 </resources>
