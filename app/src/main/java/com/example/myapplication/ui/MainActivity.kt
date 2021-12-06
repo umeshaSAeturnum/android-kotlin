@@ -29,28 +29,17 @@ class MainActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news)
 
-
         val newsRepository = NewsRepository(ArticleDatabase(this))
-//        val newsRepository = NewsRepository()
 
         //view model factory is used when there are parameters for viewModel constructor
         //if not ViewModelProviders.of() method internally creates default ViewModelProvider.Factory implementation for creating our ViewModel with no argument.
-        val viewModelProviderFactory = NewsViewModelProviderFactory(newsRepository)
+        val viewModelProviderFactory = NewsViewModelProviderFactory(application, newsRepository)
         viewModel =
             ViewModelProvider(this, viewModelProviderFactory).get(MainActivityViewModel::class.java)
 
-//        navController = Navigation.findNavController(this,R.id.nav_host_fragment)
-//        bottom_nav.setupWithNavController(navController)
-//
-//        NavigationUI.setupActionBarWithNavController(this,navController)
-
-
-//        val viewModelProviderFactory = NewsViewModelProviderFactory(application, newsRepository)
-//        viewModel = ViewModelProvider(this, viewModelProviderFactory).get(NewsViewModel::class.java)
         bottom_nav.setupWithNavController(nav_host_fragment.findNavController())
 
     }
-
 
     fun getData(article: Article) {
         Log.i(TAG_MAIN_ACTIVITY, "getting the bundle $article")
@@ -60,9 +49,5 @@ class MainActivity : AppCompatActivity(){
         intent.putExtras(bundle)
         startActivity(intent)
     }
-
-//    override fun onSupportNavigateUp(): Boolean {
-//        return NavigationUI.navigateUp(navController,null)
-//    }
 
 }
