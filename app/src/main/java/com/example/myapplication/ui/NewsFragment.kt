@@ -6,7 +6,6 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -58,8 +57,7 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
 
                 is Resource.Error ->{
                     response.message?.let { message ->
-                        Toast.makeText(activity, "An error Occured: $message", Toast.LENGTH_LONG)
-                            .show()
+                        Log.e(TAG_BREAK_NEWS, "An error occured+$message")
                     }
                 }
             }
@@ -75,8 +73,7 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
 
                 is Resource.Error ->{
                     response.message?.let { message ->
-                        Toast.makeText(activity, "An error Occured: $message", Toast.LENGTH_LONG)
-                            .show()
+                        Log.e(TAG_SEARCH_NEWS, "An error occured+$message")
                     }
                 }
             }
